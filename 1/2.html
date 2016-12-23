@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快递单</title>
+    <style>
+        body { font-size: 14px; font-family:"SimHei"; line-height: 1.5;}
+        *{margin: 0; padding: 0;}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .clearfix:after {
+            clear: both;
+            display: block;
+            visibility: hidden;
+            overflow: hidden;
+            height: 0;
+            content: ".";
+        }
+        li { list-style: none;}
+        .tl { text-align: left;}
+        .tr { text-align: right;}
+        .pr { position: relative;}
+        .page { width: 100mm; height: 180mm; margin: auto; padding: 2mm;}
+        .divtop { border-bottom:dashed 2px #000; padding-bottom: 2mm; height: 110mm;}
+        .topul { height: ;}
+        .topul li { float: left;}
+        .topul .li1 { font-size: 30px;}
+        .topul .li2 { font-size: 18px; text-align: center; width: 60%;}
+        .toptable { border-top: 1px solid #000;}
+        .toptable thead th,.toptable tbody td { font-size: 20px; padding: 1mm 0;}
+        .toptable thead th { text-align: left;}
+        .toptable tbody td { border-top: 1px solid #000; border-left: 1px solid #000;}
+        .toptable tbody td:first-child { border-left: none;}
+        .toptable tbody td.pl1 { padding-left: 1mm;}
+        .toptable tbody td.tds1 { width: 10mm; text-align: center; line-height: 10mm;}
+        .toptable tbody td.tds2 { padding:1mm 1mm;}
+        .toptable tbody td.tds3 { width: 200px; font-size: 15px;}
+        .toptable tbody td.tds4 { font-size: 18px; padding: 1mm;}
+        .toptable tbody td.tds4 .subdiv { font-size: 15px; line-height: 1.5;}
+        .toptable tbody td.tdsys { text-align: center; line-height: 1.5; height: 30mm; width: 30mm;}
+        .toptable .tit,.toptable .cont { display: inline-block; *zoom:1;}
+        .toptable .tit { width: 64px; text-align: right;}
+        .toptable tbody td.td15 { font-size: 15px;}
+        .sjzhi { font-size: 20px;}
+        .footdiv { height: 70mm; line-height: 1.2;}
+        .footdiv .toptable thead th,.footdiv .toptable tbody td { padding: 0;}
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="divtop">
+            <ul class="topul clearfix">
+                <li class="li1"><b>快递包裹</b></li>
+                <li class="li2">
+                    <p>这里是条形码</p>
+                    <p>997431000000001</p>
+                </li>
+            </ul>
+            <table class="toptable">
+                <thead>
+                    <tr>
+                        <th colspan="2">　广州转　珠海市　（投递局）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="trst1">
+                        <td class="tds1" style="padding:4mm 0;">收<br />件</span></td>
+                        <td class="tds2">
+                            <p>
+                                李中永　15084932115　0756－123456<br />
+                                广东省　珠海市　香区　519015　唐家湾金凤区xx号
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="toptable">
+                <tbody>
+                    <tr>
+                        <td class="tds3">
+                            <ul>
+                                <li>
+                                    <span class="tit">订单号：</span><span class="cont">
+                                        <p>0kd0421144543</p></span>
+                                </li>
+                                <li>
+                                    <span class="tit">品名：</span><span class="cont">
+                                        <p>防盗锁 * 1</p>
+                                        <p>防盗锁 * 1</p>
+                                        <p>防盗锁 * 1</p>
+                                    </span>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="tds4">
+                            <p>收件人/代收件人：</p>
+                            <div style="height:26mm;">
+
+                            </div>
+                            <p>（代收款：　元）</p>
+                            <div class="subdiv">
+                                <p class="tl">签收时间：</p>
+                                <p class="tr">　年　月　日　时</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footdiv">
+            <ul class="topul clearfix">
+                <li class="li2">
+                    <p>这里是条形码</p>
+                    <p>997431000000001</p>
+                </li>
+                <li class="li1"><b>快递包裹</b></li>
+            </ul>
+            <table class="toptable">
+                <tbody>
+                    <tr>
+                        <td class="tds1">收<br />件</td>
+                        <td colspan="2" class="tds3 pl1">
+                            <p>
+                                李中永　15084932115　0769－123456<br />
+                                广东省　珠海市　香区　519015　唐家湾金凤区xx号
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tds1">寄<br />件</td>
+                        <td class="tds3 pl1 pr">
+                            <p>
+                                <span>高峰</span>　0769－123456　15084932115<br />
+                                湖南省花石村中央大街<br />
+                                客户编码：123456
+                            </p>
+                            <p class="tr"><span class="sjzhi">（收寄局）</span></p>
+                        </td>
+                        <td rowspan="3" class="tdsys">
+                            已验视<br />
+                            　验视人：<br />
+                            李立行
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td15">订单号：fdsads16549835</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td15">网址：www.l.com　客服电话：11185</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

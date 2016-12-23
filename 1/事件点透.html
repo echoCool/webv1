@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    a { display: block; width: 50px; height: 50px; margin: 50px; background: red;}
+    </style>
+</head>
+<body>
+    <div id="div">
+
+    </div>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+    <a href="https://www.baidu.com/">百度</a>
+</body>
+<script>
+    document.addEventListener('touchstart',function(e){
+        e.preventDefault();
+    },true);
+
+    var div = document.querySelector('#div');
+    var a = document.querySelectorAll('a');
+
+    for( var i = 0; i < a.length; i++ ){
+        a[i].addEventListener('touchstart',function(e){
+            var touch = e.changedTouches[0];
+            this.pageX = touch.pageX;
+            this.pageY = touch.pageY;
+        });
+        a[i].addEventListener('touchmove',function(e){
+            var touch = e.changedTouches[0];
+            if( Math.abs( touch.pageX - this.pageX > 2 || touch.pageY - this.pageY > 2 ) ){
+                this.move = true;
+            }
+        });
+        a[i].addEventListener('touchend',function(){
+             if( !this.move ){
+                window.location.href = this.href;
+            }
+             this.move = false;
+        });
+    }
+
+</script>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style id="css">
+        *{margin: 0; padding: 0;}
+        li{list-style: none;}
+        img { border: 0; vertical-align: middle; max-width: 100%;}
+        #wrap { overflow: hidden; position: relative;}
+        #list { position: absolute; top: 0; left: 0; width: 100%;}
+        #list li { float: left;}
+        #list li img { width: 100%; display: block;}
+        #nav { position: absolute; left: 0; bottom: 10px; width: 100%; line-height: 10px; text-align: center;}
+        #nav span { display: inline-block; height: 10px; width: 10px; border-radius: 5px; background: red;}
+        #nav span.active { background: yellow;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul id="list">
+            <li>
+                <a href="#"><img src="img/1.jpg" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/2.jpg" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/3.jpg" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/4.jpg" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/5.jpg" /></a>
+            </li>
+        </ul>
+        <nav id="nav">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </nav>
+    </div>
+</body>
+<script>
+    document.addEventListener('touchstart',function(e){
+        e.preventDefault();
+    });
+    window.onload = function(){
+        var wrap = document.querySelector('#wrap');
+        var list = document.querySelector('#list');
+        var lis = document.querySelectorAll('#list li');
+        var nav = document.querySelectorAll('#nav span');
+        var css = document.querySelector('#css');
+        var style = '#wrap{height:'+lis[0].offsetHeight+'px}'
+        style += '#list{width:'+lis.length+'00%}';
+        style += '#list li{width:'+1/lis.length*100+'%}';
+        css.innerHTML += style;
+
+        var startPoint = 0;
+        var startX = 0;
+
+        wrap.addEventListener('touchstart',function(e){
+            list.style.transition = '';
+            startPoint = e.changedTouches[0].pageX;
+            startX = list.offsetLeft;
+        });
+
+        wrap.addEventListener('touchmove',function(e){
+            var nowPoint = e.changedTouches[0].pageX;
+            var dis = nowPoint - startPoint;
+            var left = startX + dis;
+            list.style.left = left+'px';
+        });
+
+        wrap.addEventListener('touchend',function(e){
+            var left = list.offsetLeft;
+            var now = Math.round(-left/wrap.offsetWidth);
+            console.log(now);
+            if( now < 0 ){
+                now = 0;
+            }
+            if( now > lis.length-1 ){
+                now = lis.length-1;
+            }
+            left = -now*wrap.offsetWidth;
+            list.style.transition = '.3s';
+            list.style.left = left+'px';
+            for( var i = 0; i < nav.length; i++ ){
+                nav[i].className = '';
+                nav[now].className = 'active';
+            }
+        });
+    };
+</script>
+</html>
