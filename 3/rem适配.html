@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <title>Document</title>
+    <style>
+        body { margin: 0;}
+        #box { height: 10rem; width: 10rem; background: red;}
+    </style>
+    <script>
+        setRem();
+        window.addEventListener('orientationchange',setRem);
+        function setRem(){
+            var html = document.querySelector('html');
+            var width = html.getBoundingClientRect().width;
+            html.style.fontSize = width / 16 + 'px';
+            console.log(width);
+        };
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

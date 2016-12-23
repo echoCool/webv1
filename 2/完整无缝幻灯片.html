@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>document</title>
+    <style>
+		*{margin:0; padding:0;}
+		img {border:0; vertical-align:middle; max-width:100%;}
+		li{list-style:none;}
+		#box {position:relative; overflow:hidden;}
+		#list { position:absolute; top:0; left:0; width:100%;}
+		#list li { float:left;}
+		#nav { position:absolute; bottom:10px; left:0; text-align:center; width:100%;}
+		#nav span { display:inline-block; width:10px; height:10px; border-radius:5px; background:#fff;}
+		#nav span.active { background:red;}
+	</style>
+    <script src="transform.js"></script>
+    <script>
+	document.addEventListener('touchstart',function(e){e.preventDefault()});
+	window.onload = function(){
+		var box = document.querySelector('#box');
+		var list = document.querySelector('#list');
+		list.innerHTML += list.innerHTML;
+		var lis = document.querySelectorAll('#list li');
+		var navs = document.querySelectorAll('#nav span');
+		var css = '#box{height:'+lis[0].offsetHeight+'px} #list{width:'+lis.length+'00%}';
+		css += '#list li{width:'+1/lis.length*100+'%}';
+		document.querySelector('style').innerHTML += css;
+
+		var timer = 0;
+		var now = 0;
+
+		var startPoint = 0;
+		var startX = 0;
+
+		cssTransform(list,'translateX',0);
+		auto();
+		box.addEventListener('touchstart',function(e){
+			clearInterval( timer );
+			list.style.transition = 'none';
+			var left = cssTransform(list,'translateX');
+			now = Math.round(-(left/lis[0].offsetWidth));
+			if( now == 0 ){
+				now = navs.length;
+			}
+			if( now == lis.length - 1 ){
+				now = navs.length - 1;
+			}
+			var left = -now * lis[0].offsetWidth;
+			cssTransform(list,'translateX',left);
+			startPoint = e.changedTouches[0].pageX;
+			startX = cssTransform(list,'translateX');
+		});
+
+		box.addEventListener('touchmove',function(e){
+			var nowPoint = e.changedTouches[0].pageX;
+			var dis = nowPoint - startPoint;
+			cssTransform(list,'translateX',startX + dis);
+		});
+
+		box.addEventListener('touchend',function(e){
+			var left = cssTransform(list,'translateX');
+			now = Math.round(-(left/lis[0].offsetWidth));
+			var left = -now * lis[0].offsetWidth;
+			tab();
+			auto();
+		});
+
+		function auto(){
+			clearInterval( timer );
+			timer = setInterval(function(){
+				if( now == lis.length - 1 ){
+					now = navs.length - 1;
+					list.style.transition = 'none';
+					var left = -now * lis[0].offsetWidth;
+					cssTransform(list,'translateX',left);
+				}
+				setTimeout(function(){
+					now++;
+					tab();
+				},30);
+			},3000);
+		}
+
+		function tab(){
+			list.style.transition = '.5s';
+			cssTransform(list,'translateX',-now*box.offsetWidth);
+			for( var i = 0; i < navs.length; i++ ){
+				navs[i].className = '';
+			}
+			navs[now%navs.length].className = 'active';
+		}
+
+	}
+	</script>
+</head>
+
+<body>
+	<div id="box">
+    	<ul id="list">
+        	<li><img src="img/1.jpg"></li>
+        	<li><img src="img/2.jpg"></li>
+        	<li><img src="img/3.jpg"></li>
+        	<li><img src="img/4.jpg"></li>
+        	<li><img src="img/5.jpg"></li>
+        </ul>
+        <div id="nav">
+        	<span class="active"></span>
+        	<span></span>
+        	<span></span>
+        	<span></span>
+        	<span></span>
+        </div>
+    </div>
+</body>
+</html>
